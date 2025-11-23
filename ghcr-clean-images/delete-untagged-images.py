@@ -30,6 +30,7 @@ def getImageIds(repo :str, token :str) -> list[int]:
 
         # Convert response to json
         respJson :list[dict[str, Any]] = resp.json()
+        # Break if response is empty
         if not respJson: break
 
         for imageData in respJson:
@@ -48,7 +49,7 @@ def getImageIds(repo :str, token :str) -> list[int]:
 
 # Delete untagged images
 def deleteUntaggedImages(repo :str, token :str, ids :list[int]):
-    
+
     for imageId in ids:
         try:
             requests.delete(
